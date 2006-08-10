@@ -4,3 +4,4 @@ Makefile.PL
 Chargen.pm
 t/1.t
 examples/simple-chargen-server.pl
+META.yml                                 Module meta-data (added by MakeMaker)
