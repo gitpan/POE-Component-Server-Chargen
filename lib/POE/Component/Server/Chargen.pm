@@ -19,7 +19,7 @@ use vars qw($VERSION);
 use constant DATAGRAM_MAXLEN => 1024;
 use constant DEFAULT_PORT => 19;
 
-$VERSION = '1.01';
+$VERSION = '1.02';
 
 sub spawn {
   my $package = shift;
@@ -38,10 +38,10 @@ sub spawn {
 
   POE::Session->create(
         object_states => [
-                $self => { _start => 'server_start',
-                           _stop  => 'server_stop',
-                           shutdown => 'server_close' },
-                $self => [ qw(accept_new_client accept_failed client_input client_error client_flushed get_datagram) ],
+                $self => { _start => '_server_start',
+                           _stop  => '_server_stop',
+                           shutdown => '_server_close' },
+                $self => [ qw(_accept_new_client _accept_failed _client_input _client_error _client_flushed _get_datagram) ],
                           ],
         ( ref $parms{'options'} eq 'HASH' ? ( options => $parms{'options'} ) : () ),
   );
@@ -49,16 +49,16 @@ sub spawn {
   return $self;
 }
 
-sub accept_new_client {
+sub _accept_new_client {
   my ($kernel,$self,$socket,$peeraddr,$peerport,$wheel_id) = @_[KERNEL,OBJECT,ARG0 .. ARG3];
   $peeraddr = inet_ntoa($peeraddr);
 
   my $wheel = POE::Wheel::ReadWrite->new (
         Handle => $socket,
         Filter => POE::Filter::Line->new(),
-        InputEvent => 'client_input',
-        ErrorEvent => 'client_error',
-	FlushedEvent => 'client_flushed',
+        InputEvent => '_client_input',
+        ErrorEvent => '_client_error',
+	FlushedEvent => '_client_flushed',
   );
 
   $self->{Clients}->{ $wheel->ID() } = { Wheel => $wheel, peeraddr => $peeraddr, peerport => $peerport, start_ascii => $self->{start_ascii} };
@@ -66,20 +66,20 @@ sub accept_new_client {
   undef;
 }
 
-sub client_input {
+sub _client_input {
   undef;
 }
 
-sub client_flushed {
+sub _client_flushed {
   my ($kernel,$self,$wheel_id) = @_[KERNEL,OBJECT,ARG0];
 
   if ( defined $self->{Clients}->{ $wheel_id } and defined $self->{Clients}->{ $wheel_id }->{Wheel} ) {
-	$self->{Clients}->{ $wheel_id }->{Wheel}->put( generate_line(\$self->{Clients}->{ $wheel_id }->{start_ascii}) );
+	$self->{Clients}->{ $wheel_id }->{Wheel}->put( _generate_line(\$self->{Clients}->{ $wheel_id }->{start_ascii}) );
   }
   undef;
 }
 
-sub get_datagram {
+sub _get_datagram {
   my ( $kernel, $self, $socket ) = @_[ KERNEL, OBJECT, ARG0 ];
 
   my $remote_address = recv( $socket, my $message = "", DATAGRAM_MAXLEN, 0 );
@@ -87,7 +87,7 @@ sub get_datagram {
 
   my $start_ascii = $self->{start_ascii};
 
-  my $reply = generate_line( \$start_ascii );
+  my $reply = _generate_line( \$start_ascii );
 
   send( $socket, $reply, 0, $remote_address ) == length($reply)
       or warn "Trouble sending response: $!";
@@ -95,7 +95,7 @@ sub get_datagram {
   undef;
 }
 
-sub generate_line {
+sub _generate_line {
   my $start_ascii = shift;
   my $chargen_line = join(
     '',

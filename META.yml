@@ -1,13 +1,13 @@
 # http://module-build.sourceforge.net/META-spec.html
 #XXXXXXX This is a prototype!!!  It will change in the future!!! XXXXX#
 name:         POE-Component-Server-Chargen
-version:      1.01
-version_from: Chargen.pm
+version:      1.02
+version_from: lib/POE/Component/Server/Chargen.pm
 installdirs:  site
 requires:
     Carp:                          0
     POE:                           0.0607
-    POE::Component::Server::Echo:  1
+    POE::Component::Server::Echo:  1.2
     Socket:                        0
 
 distribution_type: module

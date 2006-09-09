@@ -1,7 +1,10 @@
 MANIFEST
 README
 Makefile.PL
-Chargen.pm
+Changes
+lib/POE/Component/Server/Chargen.pm
 t/1.t
+t/2.t
+t/3.t
 examples/simple-chargen-server.pl
 META.yml                                 Module meta-data (added by MakeMaker)
