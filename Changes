@@ -1,6 +1,9 @@
 POE::Component::Server::Chargen
 ===============================
 
+1.03	Tue Sep 26 12:35:46 BST 2006
+	- Switched to Module::Install
+
 1.02	Sat Sep  9 13:42:43 BST 2006
 	- Rearranged distribution structure.
 	- Added Changes file
