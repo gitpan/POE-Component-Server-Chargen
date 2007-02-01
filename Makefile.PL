@@ -1,18 +1,10 @@
-#use ExtUtils::MakeMaker;
-
 use inc::Module::Install;
-
+name 'POE-Component-Server-Chargen';
 license 'perl';
 author 'Chris Williams <chris@bingosnet.co.uk>';
-
-WriteMakefile(
-			  'NAME'	=> 'POE::Component::Server::Chargen',
-			  'PREREQ_PM' => {
-					  'POE'    => 0.06_07,
-					  'Carp'   => 0,
-					  'Socket' => 0,
-					  'POE::Component::Server::Echo' => 1.2,
-					 },
-			  'VERSION_FROM' => 'lib/POE/Component/Server/Chargen.pm',
-			  'dist' => { 'COMPRESS' => 'gzip --best' },
-			 );
+version_from 'lib/POE/Component/Server/Chargen.pm';
+requires 'Carp'   => 0;
+requires 'Socket' => 0;
+requires 'POE'    => 0.38;
+requires 'POE::Component::Server::Echo' => 1.2;
+WriteAll();

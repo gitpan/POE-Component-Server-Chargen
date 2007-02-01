@@ -1,16 +1,15 @@
-author: 'Chris Williams <chris@bingosnet.co.uk>'
+author: Chris Williams <chris@bingosnet.co.uk>
 distribution_type: module
 generated_by: Module::Install version 0.64
 license: perl
-module_name: POE::Component::Server::Chargen
 name: POE-Component-Server-Chargen
-no_index:
-  directory:
+no_index: 
+  directory: 
     - inc
     - t
-requires:
+requires: 
   Carp: 0
-  POE: 0.0607
+  POE: 0.38
   POE::Component::Server::Echo: 1.2
   Socket: 0
-version: 1.03
+version: 1.04
