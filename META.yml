@@ -12,4 +12,4 @@ requires:
   POE: 0.38
   POE::Component::Server::Echo: 1.2
   Socket: 0
-version: 1.04
+version: 1.05
