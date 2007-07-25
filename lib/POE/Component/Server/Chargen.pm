@@ -19,7 +19,7 @@ use vars qw($VERSION);
 use constant DATAGRAM_MAXLEN => 1024;
 use constant DEFAULT_PORT => 19;
 
-$VERSION = '1.05';
+$VERSION = '1.06';
 
 sub spawn {
   my $package = shift;
@@ -112,7 +112,7 @@ __END__
 
 =head1 NAME
 
-POE::Component::Server::Chargen - a POE component implementing a RFC 864 Chargen server.
+POE::Component::Server::Chargen - A POE component that implements an RFC 864 Chargen server.
 
 =head1 SYNOPSIS
 
