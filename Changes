@@ -1,6 +1,9 @@
 POE::Component::Server::Chargen
 ===============================
 
+1.08	Thu Jan 17 16:49:59 GMT 2008
+	- Fixed test script naming. Added TCP and UDP tests.
+
 1.07	Thu Nov  1 09:31:44 GMT 2007
 	- Updated Module::Install to 0.68
 

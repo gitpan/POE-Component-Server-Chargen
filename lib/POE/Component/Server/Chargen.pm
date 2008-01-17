@@ -19,7 +19,7 @@ use vars qw($VERSION);
 use constant DATAGRAM_MAXLEN => 1024;
 use constant DEFAULT_PORT => 19;
 
-$VERSION = '1.07';
+$VERSION = '1.08';
 
 sub spawn {
   my $package = shift;
@@ -62,7 +62,7 @@ sub _accept_new_client {
   );
 
   $self->{Clients}->{ $wheel->ID() } = { Wheel => $wheel, peeraddr => $peeraddr, peerport => $peerport, start_ascii => $self->{start_ascii} };
-  $wheel->put( generate_line(\$self->{Clients}->{ $wheel->ID() }->{start_ascii}) );
+  $wheel->put( _generate_line(\$self->{Clients}->{ $wheel->ID() }->{start_ascii}) );
   undef;
 }
 
