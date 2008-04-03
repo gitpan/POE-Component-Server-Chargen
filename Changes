@@ -1,6 +1,9 @@
 POE::Component::Server::Chargen
 ===============================
 
+1.10	Thu Apr  3 12:37:42 BST 2008
+	- Kwalitee fixes.
+
 1.08	Thu Jan 17 16:49:59 GMT 2008
 	- Fixed test script naming. Added TCP and UDP tests.
 
