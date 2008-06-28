@@ -1,6 +1,9 @@
 POE::Component::Server::Chargen
 ===============================
 
+1.12	Sat Jun 28 09:38:48 BST 2008
+	- Added LICENSE information.
+
 1.10	Thu Apr  3 12:37:42 BST 2008
 	- Kwalitee fixes.
 
